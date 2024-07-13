@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class StudentGrades {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of subjects: ");
+        int numSubjects = sc.nextInt();
+        double[] grades = new double[numSubjects];
+
+        for (int i = 0; i < numSubjects; i++) {
+            System.out.print("Enter grade for subject " + (i + 1) + ": ");
+            grades[i] = sc.nextDouble();
+        }
+
+        double average = calculateAverage(grades);
+        char letterGrade = calculateLetterGrade(average);
+        double gpa = calculateGPA(average);
+
+        System.out.println("Average Grade: " + average);
+        System.out.println("Letter Grade: " + letterGrade);
+        System.out.println("GPA: " + gpa);
+
+        sc.close();
+    }
+
+    public static double calculateAverage(double[] grades) {
+        double sum = 0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.length;
+    }
+
+    public static char calculateLetterGrade(double average) {
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+    public static double calculateGPA(double average) {
+        if (average >= 90) {
+            return 4.0;
+        } else if (average >= 80) {
+            return 3.0;
+        } else if (average >= 70) {
+            return 2.0;
+        } else if (average >= 60) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+}
